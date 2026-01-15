@@ -12,9 +12,9 @@ pipeline {
         stage('Setup Environment') {
             steps {
                 echo 'Setting up test environment...'
-                sh '''
-                    python3 --version
-                    pip3 --version
+                bat '''
+                    python --version
+                    pip --version
                 '''
             }
         }
@@ -22,14 +22,14 @@ pipeline {
         stage('Run Calculator Tests') {
             steps {
                 echo 'Running Calculator Tests...'
-                sh 'python3 test_calculator.py'
+                bat 'python test_calculator.py'
             }
         }
         
         stage('Run String Operation Tests') {
             steps {
                 echo 'Running String Operation Tests...'
-                sh 'python3 test_string_operations.py'
+                bat 'python test_string_operations.py'
             }
         }
         
@@ -48,8 +48,7 @@ pipeline {
             echo 'Pipeline failed. Check the logs for details.'
         }
         always {
-            echo 'Cleaning up workspace...'
-            cleanWs()
+            echo 'Pipeline execution completed.'
         }
     }
 }
